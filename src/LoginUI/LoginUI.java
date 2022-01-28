@@ -1,7 +1,6 @@
 package LoginUI;
 
 import Game2048_test.App;
-import MainUI.MainUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,34 +11,34 @@ import java.io.File;
 /**
  * purpose of this class is to create a login ui interface
  */
-public class LoginUI {
-    public static JTextField userNameBox = null;
-    public static JPasswordField passwordBox = null;
-    public static JLabel ageTitle = null;
-    public static JTextField ageBox = null;
-    public static JLabel genderTitle = null;
-    public static JTextField genderBox = null;
-    public static LoginUIButton signIn = null;
-    public static LoginUIButton signUp = null;
-    public static LoginUIButton cancelSignUp = null;
-    public static LoginUIButton creatAccount = null;
-    public static LoginUIButton startAsGuest = null;
-    public static JPanel signInAndUp = null;
-    public static JPanel informationArea = null;
+public class LoginUI extends JDialog {
+    public JTextField userNameBox;
+    public JPasswordField passwordBox;
+    public JLabel ageTitle;
+    public JTextField ageBox;
+    public JLabel genderTitle;
+    public JTextField genderBox;
+    public LoginUIButton signIn;
+    public LoginUIButton signUp;
+    public LoginUIButton cancelSignUp;
+    public LoginUIButton creatAccount;
+    public LoginUIButton startAsGuest;
+    public JPanel signInAndUp;
+    public JPanel informationArea;
 
-    public static JDialog getLoginUI() {
-        JDialog loginPane = new JDialog(MainUI.f);
-        loginPane.setResizable(false);
-        loginPane.setTitle("LoginUI");
+    public LoginUI(Frame owner) {
+        super(owner);
+        this.setResizable(false);
+        this.setTitle("LoginUI");
         ImageIcon logo = new ImageIcon("src" + File.separator + "Image" + File.separator + "2048.png");
-        loginPane.setIconImage(logo.getImage());
-        loginPane.setLayout(new BorderLayout());
-        loginPane.setSize(300, 400); // 设置大小
-        loginPane.setLocationRelativeTo(null); // 相对屏幕居中
-        loginPane.setModal(true);
-        loginPane.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        this.setIconImage(logo.getImage());
+        this.setLayout(new BorderLayout());
+        this.setSize(300, 400); // 设置大小
+        this.setLocationRelativeTo(null); // 相对屏幕居中
+        this.setModal(true);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        loginPane.addWindowListener(new WindowAdapter() {
+        this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 if (!App.ifEnd) {// If you have not started the game, the game will quit when you close the login pane.
@@ -50,47 +49,45 @@ public class LoginUI {
 
         //////////////////////////information area////////////////////////////////
         //this area includes username, password, age, gender, creatAccount and startAsGuest components
-        informationArea = new JPanel();
+        this.informationArea = new JPanel();
 
         JLabel userNameTitle = new LoginUILabel("User name:", SwingConstants.CENTER);
-        userNameBox = new LoginUITextField();
+        this.userNameBox = new LoginUITextField();
 
         JLabel passwordTitle = new LoginUILabel("Password:", SwingConstants.CENTER);
-        passwordBox = new JPasswordField();
-        passwordBox.setPreferredSize(new Dimension(200, 30));
+        this.passwordBox = new JPasswordField();
+        this.passwordBox.setPreferredSize(new Dimension(200, 30));
 
-        creatAccount = new LoginUIButton("Creat Account");
-        startAsGuest = new LoginUIButton("Start as Guest");
+        this.creatAccount = new LoginUIButton("Creat Account");
+        this.startAsGuest = new LoginUIButton("Start as Guest");
 
-        ageTitle = new LoginUILabel("Age:", SwingConstants.CENTER);
-        ageBox = new LoginUITextField();
+        this.ageTitle = new LoginUILabel("Age:", SwingConstants.CENTER);
+        this.ageBox = new LoginUITextField();
 
-        genderTitle = new LoginUILabel("Gender:", SwingConstants.CENTER);
-        genderBox = new LoginUITextField();
+        this.genderTitle = new LoginUILabel("Gender:", SwingConstants.CENTER);
+        this.genderBox = new LoginUITextField();
 
 
-        informationArea.add(userNameTitle);
-        informationArea.add(userNameBox);
-        informationArea.add(passwordTitle);
-        informationArea.add(passwordBox);
-        informationArea.add(creatAccount);
-        informationArea.add(startAsGuest);
+        this.informationArea.add(userNameTitle);
+        this.informationArea.add(this.userNameBox);
+        this.informationArea.add(passwordTitle);
+        this.informationArea.add(this.passwordBox);
+        this.informationArea.add(this.creatAccount);
+        this.informationArea.add(this.startAsGuest);
         //////////////////////////information area end////////////////////////////
 
-        signInAndUp = new JPanel();
-        signInAndUp.setLayout(new GridLayout(1, 2));
-        signInAndUp.setSize(loginPane.getWidth(), 50);
+        this.signInAndUp = new JPanel();
+        this.signInAndUp.setLayout(new GridLayout(1, 2));
+        this.signInAndUp.setSize(this.getWidth(), 50);
 
-        signIn = new LoginUIButton("Sign in");// sign in button
-        signInAndUp.add(signIn, BorderLayout.CENTER);
+        this.signIn = new LoginUIButton("Sign in");// sign in button
+        this.signInAndUp.add(this.signIn, BorderLayout.CENTER);
 
-        signUp = new LoginUIButton("Sign up");// sign up button
-        cancelSignUp = new LoginUIButton("Cancel");
+        this.signUp = new LoginUIButton("Sign up");// sign up button
+        this.cancelSignUp = new LoginUIButton("Cancel");
 
-        loginPane.add(signInAndUp, BorderLayout.SOUTH);
-        loginPane.add(informationArea, BorderLayout.CENTER);
-
-        return loginPane;
+        this.add(this.signInAndUp, BorderLayout.SOUTH);
+        this.add(this.informationArea, BorderLayout.CENTER);
     }
 
 }

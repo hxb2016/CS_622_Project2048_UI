@@ -21,14 +21,14 @@ import java.util.Date;
 public class LoginUIController {
     public static void setController() {
         // Set controller for Sign in button
-        LoginUI.signIn.addActionListener(new ActionListener() {
+        App.loginUI.signIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = LoginUI.userNameBox.getText().trim().equals("") ? " " : LoginUI.userNameBox.getText();
+                String username = App.loginUI.userNameBox.getText().trim().equals("") ? " " : App.loginUI.userNameBox.getText();
                 //If username in the local data, the user is a registered user
                 if (App.usersData != null && App.usersData.containsKey(username)) {
                     //Judge that if the password is right
-                    if (Arrays.equals(LoginUI.passwordBox.getPassword(), App.usersData.get(username).password)) {
+                    if (Arrays.equals(App.loginUI.passwordBox.getPassword(), App.usersData.get(username).password)) {
                         // If the game has been ended
                         if (!App.ifEnd) {
                             App.currentUser = App.usersData.get(username);
@@ -65,7 +65,7 @@ public class LoginUIController {
 
 
         // Set controller for signUp button
-        LoginUI.signUp.addActionListener(new ActionListener() {
+        App.loginUI.signUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (App.ifEnd) {
@@ -77,51 +77,51 @@ public class LoginUIController {
         });
 
         // Set controller for creatAccount button
-        LoginUI.creatAccount.addActionListener(new ActionListener() {
+        App.loginUI.creatAccount.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LoginUI.informationArea.remove(LoginUI.creatAccount);
-                LoginUI.informationArea.remove(LoginUI.startAsGuest);
-                LoginUI.informationArea.add(LoginUI.ageTitle);
-                LoginUI.informationArea.add(LoginUI.ageBox);
-                LoginUI.informationArea.add(LoginUI.genderTitle);
-                LoginUI.informationArea.add(LoginUI.genderBox);
+                App.loginUI.informationArea.remove(App.loginUI.creatAccount);
+                App.loginUI.informationArea.remove(App.loginUI.startAsGuest);
+                App.loginUI.informationArea.add(App.loginUI.ageTitle);
+                App.loginUI.informationArea.add(App.loginUI.ageBox);
+                App.loginUI.informationArea.add(App.loginUI.genderTitle);
+                App.loginUI.informationArea.add(App.loginUI.genderBox);
 
-                LoginUI.signInAndUp.remove(LoginUI.signIn);
-                LoginUI.signInAndUp.add(LoginUI.signUp);
-                LoginUI.signInAndUp.add(LoginUI.cancelSignUp);
+                App.loginUI.signInAndUp.remove(App.loginUI.signIn);
+                App.loginUI.signInAndUp.add(App.loginUI.signUp);
+                App.loginUI.signInAndUp.add(App.loginUI.cancelSignUp);
 
-                LoginUI.signInAndUp.updateUI();
-                LoginUI.informationArea.updateUI();
+                App.loginUI.signInAndUp.updateUI();
+                App.loginUI.informationArea.updateUI();
             }
         });
 
         // Set controller for cancelSignUp button
-        LoginUI.cancelSignUp.addActionListener(new ActionListener() {
+        App.loginUI.cancelSignUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                LoginUI.informationArea.remove(LoginUI.ageTitle);
-                LoginUI.informationArea.remove(LoginUI.ageBox);
-                LoginUI.informationArea.remove(LoginUI.genderTitle);
-                LoginUI.informationArea.remove(LoginUI.genderBox);
-                LoginUI.informationArea.add(LoginUI.creatAccount);
-                LoginUI.informationArea.add(LoginUI.startAsGuest);
+                App.loginUI.informationArea.remove(App.loginUI.ageTitle);
+                App.loginUI.informationArea.remove(App.loginUI.ageBox);
+                App.loginUI.informationArea.remove(App.loginUI.genderTitle);
+                App.loginUI.informationArea.remove(App.loginUI.genderBox);
+                App.loginUI.informationArea.add(App.loginUI.creatAccount);
+                App.loginUI.informationArea.add(App.loginUI.startAsGuest);
 
-                LoginUI.signInAndUp.remove(LoginUI.signUp);
-                LoginUI.signInAndUp.remove(LoginUI.cancelSignUp);
-                LoginUI.signInAndUp.add(LoginUI.signIn);
+                App.loginUI.signInAndUp.remove(App.loginUI.signUp);
+                App.loginUI.signInAndUp.remove(App.loginUI.cancelSignUp);
+                App.loginUI.signInAndUp.add(App.loginUI.signIn);
 
-                LoginUI.signInAndUp.updateUI();
-                LoginUI.informationArea.updateUI();
+                App.loginUI.signInAndUp.updateUI();
+                App.loginUI.informationArea.updateUI();
             }
         });
 
         // Set controller for startAsGuest button
-        LoginUI.startAsGuest.addActionListener(new ActionListener() {
+        App.loginUI.startAsGuest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = LoginUI.userNameBox.getText().trim().equals("") ? " " : LoginUI.userNameBox.getText();
+                String username = App.loginUI.userNameBox.getText().trim().equals("") ? " " : App.loginUI.userNameBox.getText();
                 App.currentUser = new UnRegisteredUser(username);
 
                 CreateBlockArrayData.creatBlockArrayData(App.interfaceSize, App.currentUser);
@@ -139,12 +139,12 @@ public class LoginUIController {
      * Purpose of this method is to be call by controller of signUp button when the game has not been started
      */
     public static void signUpBeforeGame() {
-        String username = LoginUI.userNameBox.getText().trim();
-        char[] password = LoginUI.passwordBox.getPassword();
+        String username = App.loginUI.userNameBox.getText().trim();
+        char[] password = App.loginUI.passwordBox.getPassword();
         if (password.length != 0 && !username.equals("")) {
             if (App.usersData == null || !App.usersData.containsKey(username)) {
-                int age = Integer.parseInt(LoginUI.ageBox.getText().trim().equals("") ? "18" : LoginUI.ageBox.getText());
-                String gender = LoginUI.genderBox.getText();
+                int age = Integer.parseInt(App.loginUI.ageBox.getText().trim().equals("") ? "18" : App.loginUI.ageBox.getText());
+                String gender = App.loginUI.genderBox.getText();
                 App.currentUser = new RegisteredUser(username, password, age, gender);
                 assert App.usersData != null;
                 App.usersData.put(username, App.currentUser);
@@ -180,12 +180,12 @@ public class LoginUIController {
      * Purpose of this method is to be call by controller of signUp button when the game has been ended
      */
     public static void signUpAfterGame() {
-        String username = LoginUI.userNameBox.getText().trim();
-        char[] password = LoginUI.passwordBox.getPassword();
+        String username = App.loginUI.userNameBox.getText().trim();
+        char[] password = App.loginUI.passwordBox.getPassword();
         if (password.length != 0 && !username.equals("")) {
             if (App.usersData == null || !App.usersData.containsKey(username)) {
-                int age = Integer.parseInt(LoginUI.ageBox.getText().trim().equals("") ? "18" : LoginUI.ageBox.getText());
-                String gender = LoginUI.genderBox.getText();
+                int age = Integer.parseInt(App.loginUI.ageBox.getText().trim().equals("") ? "18" : App.loginUI.ageBox.getText());
+                String gender = App.loginUI.genderBox.getText();
                 RegisteredUser newCurrentUser = new RegisteredUser(username, password, age, gender);
                 newCurrentUser.dataExchange(App.currentUser);
                 newCurrentUser.setData();//set the data to prepare for saving

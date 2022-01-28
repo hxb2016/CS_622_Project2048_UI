@@ -25,7 +25,7 @@ public class App {
     public final static int WinNum = 16;// You will win the game, if there is any number larger than WinNum
     public static Map<String, User> usersData = null;
     public static String userDataPath = "src" + File.separator + "UserData" + File.separator + "Data.txt";
-    public static JDialog loginUI = null;
+    public static LoginUI loginUI = null;
     public static boolean ifEnd = false;// Judge that the game end or not
     public static long startTime = 0;// Purpose of the parameter is to record time you have taken
 
@@ -43,7 +43,7 @@ public class App {
         MainUI.initUI();//init JFrame
         MainUIController.setUIController();//Set controller for UI
 
-        loginUI = LoginUI.getLoginUI();//Get login pane and show on screen
+        loginUI = new LoginUI(MainUI.f);//Get login pane and show on screen
         LoginUIController.setController();// Set actions of the buttons on login pane
         loginUI.setVisible(true);//Show login pane on screen
     }

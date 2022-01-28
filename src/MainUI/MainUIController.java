@@ -17,7 +17,7 @@ public class MainUIController {
      */
     public static void setUIController() {
         // set action listener for up button in MainUI
-        MainUI.up.addActionListener(new ActionListener() {
+        App.mainUI.up.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -31,7 +31,7 @@ public class MainUIController {
         });
 
         // set action listener for left button in MainUI
-        MainUI.left.addActionListener(new ActionListener() {
+        App.mainUI.left.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -45,7 +45,7 @@ public class MainUIController {
         });
 
         // set action listener for down button in MainUI
-        MainUI.down.addActionListener(new ActionListener() {
+        App.mainUI.down.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -59,7 +59,7 @@ public class MainUIController {
         });
 
         // set action listener for right button in MainUI
-        MainUI.right.addActionListener(new ActionListener() {
+        App.mainUI.right.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -73,12 +73,12 @@ public class MainUIController {
         });
 
         // set action listener for New Game button in MainUI
-        MainUI.newGame.addActionListener(new ActionListener() {
+        App.mainUI.newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     CreateBlockArrayData.creatBlockArrayData(App.interfaceSize, App.currentUser);//init current user's block array data
-                    MainUIBlocksArrayPaneUpdate.updateUI(MainUI.blocksArray, App.currentUser.currentBlocksArrayData, MainUI.blocksArrayPane);//update UI
+                    MainUIBlocksArrayPaneUpdate.updateUI(App.mainUI.blocksArray, App.currentUser.currentBlocksArrayData, App.mainUI.blocksArrayPane);//update UI
                     App.startTime = new Date().getTime();//init timer
                     App.ifEnd = false;
                 } catch (Exception ex) {

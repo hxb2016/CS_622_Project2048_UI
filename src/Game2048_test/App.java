@@ -26,6 +26,7 @@ public class App {
     public static Map<String, User> usersData = null;
     public static String userDataPath = "src" + File.separator + "UserData" + File.separator + "Data.txt";
     public static LoginUI loginUI = null;
+    public static MainUI mainUI = null;
     public static boolean ifEnd = false;// Judge that the game end or not
     public static long startTime = 0;// Purpose of the parameter is to record time you have taken
 
@@ -40,10 +41,10 @@ public class App {
             e.printStackTrace();
         }
 
-        MainUI.initUI();//init JFrame
+        mainUI = new MainUI();//init JFrame
         MainUIController.setUIController();//Set controller for UI
 
-        loginUI = new LoginUI(MainUI.f);//Get login pane and show on screen
+        loginUI = new LoginUI(mainUI);//Get login pane and show on screen
         LoginUIController.setController();// Set actions of the buttons on login pane
         loginUI.setVisible(true);//Show login pane on screen
     }

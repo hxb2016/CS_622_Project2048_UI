@@ -53,7 +53,7 @@ public class Operate {
                 currentUser.currentBlocksArrayData[randomBlock.location[0]][randomBlock.location[1]] = randomBlock;
                 ifMoving = false;
             }
-            MainUIBlocksArrayPaneUpdate.updateUI(MainUI.blocksArray, currentUser.currentBlocksArrayData, MainUI.blocksArrayPane);
+            MainUIBlocksArrayPaneUpdate.updateUI(App.mainUI.blocksArray, currentUser.currentBlocksArrayData, App.mainUI.blocksArrayPane);
 
             App.ifEnd = isEnd(currentUser);
         }
@@ -66,13 +66,13 @@ public class Operate {
 
                     if (isWin(currentUser.currentBlocksArrayData)) {
                         currentUser.currentResult = "win";
-                        OptionPane.setJOptionPaneMessage(MainUI.f, "YOU WIN!!! Taken " + currentUser.currentTakeTime / 1000 + "s", "Congratulations", null);
+                        OptionPane.setJOptionPaneMessage(App.mainUI, "YOU WIN!!! Taken " + currentUser.currentTakeTime / 1000 + "s", "Congratulations", null);
                     } else {
                         currentUser.currentResult = "fail";
-                        OptionPane.setJOptionPaneMessage(MainUI.f, "GAME OVER! Taken " + currentUser.currentTakeTime / 1000 + "s", "Sorry", null);
+                        OptionPane.setJOptionPaneMessage(App.mainUI, "GAME OVER! Taken " + currentUser.currentTakeTime / 1000 + "s", "Sorry", null);
                     }
 
-                    int userOption = OptionPane.setJOptionPaneConfirm(MainUI.f, "Save the result?", "Message");
+                    int userOption = OptionPane.setJOptionPaneConfirm(App.mainUI, "Save the result?", "Message");
 
                     if (userOption == JOptionPane.YES_OPTION) {
                         if (App.usersData == null) {
@@ -83,8 +83,8 @@ public class Operate {
                             App.usersData.put(currentUser.username, currentUser);
                             try {
                                 SaveUsersData.saveUsersData(App.usersData, App.userDataPath);//example data
-                                OptionPane.setJOptionPaneMessage(MainUI.f, "Successfully save!", "Message", null);
-                                MainUI.updateLastBestRecord();
+                                OptionPane.setJOptionPaneMessage(App.mainUI, "Successfully save!", "Message", null);
+                                App.mainUI.updateLastBestRecord();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

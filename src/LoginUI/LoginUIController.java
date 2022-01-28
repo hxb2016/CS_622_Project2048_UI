@@ -33,7 +33,7 @@ public class LoginUIController {
                         if (!App.ifEnd) {
                             App.currentUser = App.usersData.get(username);
                             CreateBlockArrayData.creatBlockArrayData(App.interfaceSize, App.currentUser);
-                            MainUIBlocksArrayPaneUpdate.updateUI(MainUI.blocksArray, App.currentUser.currentBlocksArrayData, MainUI.blocksArrayPane);
+                            MainUIBlocksArrayPaneUpdate.updateUI(App.mainUI.blocksArray, App.currentUser.currentBlocksArrayData, App.mainUI.blocksArrayPane);
                             App.loginUI.setVisible(false);
                             App.startTime = new Date().getTime();//init timer
                         } else {
@@ -44,9 +44,9 @@ public class LoginUIController {
                             App.currentUser = newCurrentUser;
                             try {
                                 SaveUsersData.saveUsersData(App.usersData, App.userDataPath);
-                                OptionPane.setJOptionPaneMessage(MainUI.f, "Successfully Registered and Save!", "Message", null);
+                                OptionPane.setJOptionPaneMessage(App.mainUI, "Successfully Registered and Save!", "Message", null);
 
-                                MainUI.updateLastBestRecord();
+                                App.mainUI.updateLastBestRecord();
                             } catch (IOException ex) {
                                 System.out.println("Error happened when save data.");
                                 ex.printStackTrace();
@@ -55,10 +55,10 @@ public class LoginUIController {
                         }
 
                     } else {
-                        OptionPane.setJOptionPaneMessage(MainUI.f, "Wrong Password!", "Message", null);
+                        OptionPane.setJOptionPaneMessage(App.mainUI, "Wrong Password!", "Message", null);
                     }
                 } else {
-                    OptionPane.setJOptionPaneMessage(MainUI.f, "Sorry, you have no account!", "Message", null);
+                    OptionPane.setJOptionPaneMessage(App.mainUI, "Sorry, you have no account!", "Message", null);
                 }
             }
         });
@@ -125,7 +125,7 @@ public class LoginUIController {
                 App.currentUser = new UnRegisteredUser(username);
 
                 CreateBlockArrayData.creatBlockArrayData(App.interfaceSize, App.currentUser);
-                MainUIBlocksArrayPaneUpdate.updateUI(MainUI.blocksArray, App.currentUser.currentBlocksArrayData, MainUI.blocksArrayPane);
+                MainUIBlocksArrayPaneUpdate.updateUI(App.mainUI.blocksArray, App.currentUser.currentBlocksArrayData, App.mainUI.blocksArrayPane);
                 App.loginUI.setVisible(false);
 
                 App.startTime = new Date().getTime();//init timer
@@ -151,26 +151,26 @@ public class LoginUIController {
 
                 try {
                     SaveUsersData.saveUsersData(App.usersData, App.userDataPath);
-                    OptionPane.setJOptionPaneMessage(MainUI.f, "Good Job! Successfully registered!", "Message", null);
+                    OptionPane.setJOptionPaneMessage(App.mainUI, "Good Job! Successfully registered!", "Message", null);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
                 App.loginUI.setVisible(false);
 
                 CreateBlockArrayData.creatBlockArrayData(App.interfaceSize, App.currentUser);
-                MainUIBlocksArrayPaneUpdate.updateUI(MainUI.blocksArray, App.currentUser.currentBlocksArrayData, MainUI.blocksArrayPane);
+                MainUIBlocksArrayPaneUpdate.updateUI(App.mainUI.blocksArray, App.currentUser.currentBlocksArrayData, App.mainUI.blocksArrayPane);
                 App.loginUI.setVisible(false);
 
                 App.startTime = new Date().getTime();//init timer
             } else {
-                OptionPane.setJOptionPaneMessage(MainUI.f, "User name already exists!", "Message", null);
+                OptionPane.setJOptionPaneMessage(App.mainUI, "User name already exists!", "Message", null);
             }
         } else {
             if (password.length == 0) {
-                OptionPane.setJOptionPaneMessage(MainUI.f, "Password can't be empty!", "Message", null);
+                OptionPane.setJOptionPaneMessage(App.mainUI, "Password can't be empty!", "Message", null);
             }
             if (username.equals("")) {
-                OptionPane.setJOptionPaneMessage(MainUI.f, "User name can't be empty!", "Message", null);
+                OptionPane.setJOptionPaneMessage(App.mainUI, "User name can't be empty!", "Message", null);
             }
         }
 
@@ -193,23 +193,23 @@ public class LoginUIController {
                 App.currentUser = newCurrentUser;
                 try {
                     SaveUsersData.saveUsersData(App.usersData, App.userDataPath);
-                    OptionPane.setJOptionPaneMessage(MainUI.f, "Successfully Registered and Save!", "Message", null);
+                    OptionPane.setJOptionPaneMessage(App.mainUI, "Successfully Registered and Save!", "Message", null);
 
-                    MainUI.updateLastBestRecord();
+                    App.mainUI.updateLastBestRecord();
                 } catch (IOException e) {
                     System.out.println("Error happened when save data.");
                     e.printStackTrace();
                 }
                 App.loginUI.setVisible(false);
             } else {
-                OptionPane.setJOptionPaneMessage(MainUI.f, "User name already exists!", "Message", null);
+                OptionPane.setJOptionPaneMessage(App.mainUI, "User name already exists!", "Message", null);
             }
         } else {
             if (password.length == 0) {
-                OptionPane.setJOptionPaneMessage(MainUI.f, "Password can't be empty!", "Message", null);
+                OptionPane.setJOptionPaneMessage(App.mainUI, "Password can't be empty!", "Message", null);
             }
             if (username.equals("")) {
-                OptionPane.setJOptionPaneMessage(MainUI.f, "User name can't be empty!", "Message", null);
+                OptionPane.setJOptionPaneMessage(App.mainUI, "User name can't be empty!", "Message", null);
             }
         }
     }

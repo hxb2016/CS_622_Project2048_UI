@@ -126,7 +126,7 @@ public class MainUI extends JFrame {
         MainUIBlocksArrayPaneUpdate.updateUI(this.lastBlockArray, ((RegisteredUser) App.currentUser).lastBlocksArrayData, this.lastRecord);
         this.lastTitleLabel.setText("Last Record: Taken " + ((RegisteredUser) App.currentUser).lastTakeTime / 1000 + "s");
         MainUIBlocksArrayPaneUpdate.updateUI(this.bestBlockArray, ((RegisteredUser) App.currentUser).bestBlocksArrayData, this.bestRecord);
-        this.bestTitleLabel.setText("Last Record: Taken " + ((RegisteredUser) App.currentUser).bestTakeTime / 1000 + "s");
+        this.bestTitleLabel.setText("Best Record: Taken " + ((RegisteredUser) App.currentUser).bestTakeTime / 1000 + "s");
     }
 
 

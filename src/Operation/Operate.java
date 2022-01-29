@@ -82,7 +82,6 @@ public class Operate {
                             App.usersData.put(currentUser.username, currentUser);
                             try {
                                 SaveUsersData.saveUsersData(App.usersData, App.userDataPath);//example data
-                                OptionPane.setJOptionPaneMessage(App.mainUI, "Successfully save!", "Message", null);
                                 App.mainUI.updateLastBestRecord();
                             } catch (IOException e) {
                                 e.printStackTrace();

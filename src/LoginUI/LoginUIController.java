@@ -4,7 +4,6 @@ import Game2048_test.App;
 import IO.SaveUsersData;
 import Tool.OptionPane;
 import Tool.CreateBlockArrayData;
-import MainUI.MainUI;
 import MainUI.MainUIBlocksArrayPaneUpdate;
 import Users.RegisteredUser;
 import Users.UnRegisteredUser;
@@ -36,6 +35,8 @@ public class LoginUIController {
                             MainUIBlocksArrayPaneUpdate.updateUI(App.mainUI.blocksArray, App.currentUser.currentBlocksArrayData, App.mainUI.blocksArrayPane);
                             App.loginUI.setVisible(false);
                             App.startTime = new Date().getTime();//init timer
+
+                            App.mainUI.updateLastBestRecord();
                         } else {
                             RegisteredUser newCurrentUser = (RegisteredUser) (App.usersData.get(username));
                             newCurrentUser.dataExchange(App.currentUser);

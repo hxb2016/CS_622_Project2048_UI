@@ -33,8 +33,8 @@ public class LoginUI extends JDialog {
         ImageIcon logo = new ImageIcon("src" + File.separator + "Image" + File.separator + "2048.png");
         this.setIconImage(logo.getImage());
         this.setLayout(new BorderLayout());
-        this.setSize(300, 400); // 设置大小
-        this.setLocationRelativeTo(null); // 相对屏幕居中
+        this.setSize(300, 400);
+        this.setLocationRelativeTo(null);
         this.setModal(true);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 

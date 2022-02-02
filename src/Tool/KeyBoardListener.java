@@ -21,14 +21,38 @@ public class KeyBoardListener<Comp extends Component> {
 
     public void setListener() {
         this.comp.addKeyListener(new KeyAdapter() {
+
             @Override
             public void keyPressed(KeyEvent e) {
                 try {
+                    Thread changeBackGround = new Thread() {
+                        @Override
+                        public void run() {
+                            switch (e.getKeyCode()) {
+                                case 38 -> App.mainUI.up.setBackground(new Color(184,207,229));
+                                case 37 -> App.mainUI.left.setBackground(new Color(184,207,229));
+                                case 39 -> App.mainUI.right.setBackground(new Color(184,207,229));
+                                case 40 -> App.mainUI.down.setBackground(new Color(184,207,229));
+                            }
+                        }
+                    };
+                    changeBackGround.start();
+                    ///////////////////////////////////////////////////////////
                     if (!App.ifEnd) {
                         Operate.operation(e.getKeyCode(), App.currentUser);
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                switch (e.getKeyCode()) {
+                    case 38 -> App.mainUI.up.setBackground(new Color(18, 150, 219));
+                    case 37 -> App.mainUI.left.setBackground(new Color(18, 150, 219));
+                    case 39 -> App.mainUI.right.setBackground(new Color(18, 150, 219));
+                    case 40 -> App.mainUI.down.setBackground(new Color(18, 150, 219));
                 }
             }
         });
